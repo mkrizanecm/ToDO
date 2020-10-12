@@ -37,26 +37,37 @@ $(document).ready(function () {
 
         $("#notification").text('');
 
+        taskId = $('[id^=task_]').length + 1;
         $("#main").append(
-            '<div id="task_"' + taskName + 'class="row justify-content-center">' +
+            '<div id="task_' + taskId + '"' + 'class="row justify-content-center">' +
                 '<div class="col-7">' +
-                    '<li class="list-group-item list-group-item-primary">' + taskName + '</li>'+
+                    '<li id="taskitem_' + taskId + '"' + 'class="list-group-item list-group-item-primary">' + taskName + '</li>'+
                 '</div>' +
                 '<div class="col-2">' +
                     '<div class="button-group">' +
-                        '<button id="finish-task" type="button" class="btn btn-success btn-lg">Finish</button>'+
-                        '<button id="remove-task" type="button" class="btn btn-danger btn-lg">Remove</button>'+
+                        '<button id="finish_'  + taskId + '"' + 'type="button" class="btn btn-success btn-lg finish">Finish</button>' +
+                        '<button id="remove_'  + taskId + '"' + 'type="button" class="btn btn-danger btn-lg remove">Remove</button>' +
                     '</div>' +
-                '</div>'+
+                '</div>' +
             '</div>' +
             '</br>'
         );
 
         $("#insert-task").blur();
+
+        $(".finish").on("click", function() {
+            taskId = this.id.substr(this.id.indexOf('_') + 1);
+            
+            $('#taskitem_' + taskId).addClass('list-group-item list-group-item-success');
+            $('#taskitem_' + taskId).wrap("<strike>");
+
+            $("#finish_" + taskId).prop('disabled', true);
+            $("#finish_" + taskId).blur();
+        });
+    
+        $(".remove").on("click", function() {
+            taskId = this.id.substr(this.id.indexOf('_') + 1);
+            $('#task_' + taskId).remove();
+        });
     });
-
-
-
-
-
 });  
