@@ -9,20 +9,15 @@
     <title>ToDo app</title>
 </head>
 <body class='body'>
-    <div class="container-fluid">
+    <div id='main' class="container-fluid">
         <div class="row mb-5 mt-5">
           <div class="col">
-              <h1 align='center'>Create your own ToDo list with reminders!</h1>
+              <h1 align='center'>ToDO list</h1>
           </div>
         </div>
         <div class="row mb-5 mt-5">
             <div class="col">
-                <h2 align='center'>Start now!</h2>
-            </div>
-        </div>
-        <div style='display:none;' class="row mb-5 mt-5">
-            <div class="col">
-                <h2 align='center'></h2>
+                <h2 id='notification' align='center'></h2>
             </div>
         </div>
         <div class="row mb-5 mt-5 justify-content-center">
@@ -34,15 +29,6 @@
             </div>
             <div class="col-2">
                 <button id='insert-task' type="button" class="btn btn-primary btn-lg">Insert to list</button>
-            </div>
-        </div>
-        <div class="row mb-5 mt-5 justify-content-center">
-            <div class="col-16">
-                <ul id='task-list' class="list-group">
-                    <li class="list-group-item list-group-item-primary">This is a primary list group item aaaaaaaaaa</li>
-                    <li class="list-group-item list-group-item-success">This is a success list group item</li>
-                    <li class="list-group-item list-group-item-danger">This is a danger list group item</li>
-                </ul>
             </div>
         </div>
     </div>
