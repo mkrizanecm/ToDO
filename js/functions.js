@@ -33,15 +33,22 @@ $(document).ready(function () {
             $("#notification").text('Enter valid time for timer.');
             $("#time").css({"border": '#FF0000 1px solid'});
             return;
+        } else {
+            if (reminder == '') {
+                reminder = '-';
+            }
         }
 
         $("#notification").text('');
 
         taskId = $('[id^=task_]').length + 1;
         $("#main").append(
-            '<div id="task_' + taskId + '"' + 'class="row justify-content-center">' +
-                '<div class="col-7">' +
-                    '<li id="taskitem_' + taskId + '"' + 'class="list-group-item list-group-item-primary">' + taskName + '</li>'+
+            '<div id="task_' + taskId + '"' + 'class="row mb-5 mt-5 justify-content-center">' +
+                '<div class="col-6">' +
+                    '<li id="taskitem_' + taskId + '" class="list-group-item list-group-item-primary">' + taskName + '</li>'+
+                '</div>' +
+                '<div class="col-1">' +
+                    '<input id="taskreminder_' + taskId + '" class="form-control form-control-lg" type="text" value="' + reminder + '" disabled>' +
                 '</div>' +
                 '<div class="col-2">' +
                     '<div class="button-group">' +
@@ -49,8 +56,7 @@ $(document).ready(function () {
                         '<button id="remove_'  + taskId + '"' + 'type="button" class="btn btn-danger btn-lg remove">Remove</button>' +
                     '</div>' +
                 '</div>' +
-            '</div>' +
-            '</br>'
+            '</div>'
         );
 
         $("#insert-task").blur();
