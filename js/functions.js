@@ -64,6 +64,7 @@ $(document).ready(function () {
         $(".finish").on("click", function() {
             taskId = this.id.substr(this.id.indexOf('_') + 1);
             
+            $('#taskitem_' + taskId).removeAttr('class');
             $('#taskitem_' + taskId).addClass('list-group-item list-group-item-success');
             $('#taskitem_' + taskId).wrap("<strike>");
 
@@ -86,8 +87,11 @@ $(document).ready(function () {
                 currentDate = new Date();
                 currentTime = currentDate.getHours() + ":" + currentDate.getMinutes();
 
-                if ((currentTime == taskReminderVal || currentTime > taskReminderVal) && taskReminderVal != '-' && taskClass == taskClassCheck) {
+                if ((currentTime == taskReminderVal && taskReminderVal != '-') && taskClass == taskClassCheck) {
                     $('#taskitem_' + taskId).addClass('list-group-item list-group-item-danger');
+                    notificationSound = new Audio('audio/notify.mp3');
+                    notificationSound.loop = false;
+                    notificationSound.play();
                 }
             });
         }, 500);
