@@ -75,5 +75,21 @@ $(document).ready(function () {
             taskId = this.id.substr(this.id.indexOf('_') + 1);
             $('#task_' + taskId).remove();
         });
+
+        setInterval(function(){ 
+            $('[id^=taskreminder_]').each(function(  ) {
+                taskId = this.id.substr(this.id.indexOf('_') + 1);
+                taskClass = $('#taskitem_' + taskId).attr('class');
+                taskClassCheck = 'list-group-item list-group-item-primary';
+                taskReminderVal = this.value;
+
+                currentDate = new Date();
+                currentTime = currentDate.getHours() + ":" + currentDate.getMinutes();
+
+                if ((currentTime == taskReminderVal || currentTime > taskReminderVal) && taskReminderVal != '-' && taskClass == taskClassCheck) {
+                    $('#taskitem_' + taskId).addClass('list-group-item list-group-item-danger');
+                }
+            });
+        }, 500);
     });
 });  
